@@ -94,10 +94,9 @@ export class SearchComponent implements OnInit {
   }
   //@ViewChild('myModal', {static: false}) modal:ElementRef;
   showModal(comjId : string){
-    this.refComjId = comjId
-    alert(this.refComjId)
-    this.modalDetail.showModal();
-    this.modalDetail.retrieveComjDetail()
+    //this.refComjId = comjId
+    this.modalDetail.showModal(comjId);
+    //this.modalDetail.retrieveComjDetail()
     // jQuery(this.modal.nativeElement).modal('show'); 
   }
   showModalNewComj(){
