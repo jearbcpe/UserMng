@@ -4,6 +4,7 @@ import { ElementRef } from '@angular/core';
 import { DDLDivnComponent } from '../../master/ddl-divn/ddl-divn.component';
 import { ComjapiService } from '../../../service/comjapi.service';
 import { COMJ } from 'src/app/class/comj';
+import { MasterapiService } from 'src/app/service/masterapi.service';
 declare var jQuery:any;
 
 @Component({
@@ -20,7 +21,7 @@ export class ModalDetailComponent implements OnInit {
   public result : Object;
   public comj = new COMJ;
 
-  constructor(private comjService: ComjapiService) { }
+  constructor(private comjService: ComjapiService,private masterService : MasterapiService) { }
 
   ngOnInit() {
   }
@@ -46,7 +47,10 @@ export class ModalDetailComponent implements OnInit {
     this.comj.setComjPosition = this.result[0]["comjPosition"];
     this.comj.setComjDivnName = this.result[0]["comjDivnName"];
     this.comj.setComjCenterName = this.result[0]["comjCenterName"];
-    //this.showModal();
+    this.comj.setRegCardDT = this.masterService.convertDate(this.result[0]["regCardDT"]);
+    this.comj.setRegCardBy = this.result[0]["regCardBy"];
+    this.comj.setCardExp = this.result[0]["cardExp"];
+    this.comj.setStatus = this.masterService.convertNumStatusToStr(this.result[0]["status"]);
   }
 
   showModal(comjId:string){

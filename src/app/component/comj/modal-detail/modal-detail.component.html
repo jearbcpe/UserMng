@@ -12,35 +12,50 @@
         <div class="col-md-12" style="padding-top:12px; ">
                     <div class="row" >
                         <div class="col-md-12"  >
-                            <div class="col-md-12"  > <h2>นายธีระพล สันติสำราญวิไล</h2></div>
+                            <div class="col-md-12"  > <h2>{{this.comj.getComjFullName}}</h2></div>
                         </div>
                     </div>
                     <div class="row" style="padding-top: 10px;">
                       
                         <div class="col-md-12"  >
                                 <label class="col-md-4" for="exampleInputEmail1"><b>เลขที่</b></label> 
-                                <label style="font-style:italic;" class="col-md-8" class="col-md-6" for="exampleInputEmail1">{{this.comj.getComjNo}}</label>
+                                <label  class="col-md-8" class="col-md-6" for="exampleInputEmail1">{{this.comj.getComjNo}}</label>
                         </div>   
                       
                         <div class="col-md-12"  >
                             <label class="col-md-4" for="exampleInputEmail1"><b>ตำแหน่ง</b></label> 
-                            <label style="font-style:italic;" class="col-md-8" for="exampleInputEmail1">{{this.comj.getComjPosition}}	</label>
+                            <label  class="col-md-8" for="exampleInputEmail1">{{this.comj.getComjPosition}}	</label>
                         </div>  
                         <div class="col-md-12"  >
                             <label class="col-md-4" for="exampleInputEmail1"><b>จังหวัด</b></label> 
-                            <label style="font-style:italic;" class="col-md-8" for="exampleInputEmail1">ยุติธรรมจังหวัดนครสวรรค์	</label>
+                            <label  class="col-md-8" for="exampleInputEmail1">{{this.comj.getComjDivnName}}	</label>
                         </div>  
                         <div class="col-md-12"  >
                             <label class="col-md-4" for="exampleInputEmail1"><b>ศูนย์ยุติธรรมชุมชน</b></label> 
-                            <label style="font-style:italic;" class="col-md-8" for="exampleInputEmail1">ศูนย์ยุติธรรมชุมชนปากน้ำโพ	</label>
+                            <label class="col-md-8" for="exampleInputEmail1">{{this.comj.getComjCenterName}}	</label>
                         </div>    
+                        <div class="col-md-12"  >
+                          <label class="col-md-4" for="exampleInputEmail1"><b>ออกบัตรโดย</b></label> 
+                          <label class="col-md-8" for="exampleInputEmail1">{{this.comj.getRegCardBy}}	</label>
+                      </div>    
+                      <div class="col-md-12"  >
+                        <label class="col-md-4" for="exampleInputEmail1"><b>วันที่ออกบัตร</b></label> 
+                        <label class="col-md-8" for="exampleInputEmail1">{{this.comj.getRegCardDT}}	</label>
+                    </div>    
+                      <div class="col-md-12"  >
+                        <label class="col-md-4" for="exampleInputEmail1"><b>วันที่ยกเลิกบัตร</b></label> 
+                        <label class="col-md-8" for="exampleInputEmail1">{{this.comj.getCardExp}}	</label>
+                    </div>    
+                    <div class="col-md-12"  >
+                      <label class="col-md-4" for="exampleInputEmail1"><b>สถานะ</b></label> 
+                      <label class="col-md-8" for="exampleInputEmail1">{{this.comj.getStatus}}	</label>
+                  </div>    
                     </div>
                     
         </div>  
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>

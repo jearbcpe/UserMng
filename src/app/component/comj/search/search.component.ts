@@ -5,6 +5,7 @@ import { ViewChild } from '@angular/core';
 import { ModalDetailComponent } from '../modal-detail/modal-detail.component';
 import { NewComjComponent } from '../new-comj/new-comj.component';
 import { DDLDivnComponent } from '../../master/ddl-divn/ddl-divn.component';
+import { MasterapiService } from 'src/app/service/masterapi.service';
 
 @Component({
   selector: 'app-search',
@@ -17,7 +18,7 @@ export class SearchComponent implements OnInit {
   @ViewChild(ModalDetailComponent ,{static: false}) public modalDetail;
   @ViewChild(NewComjComponent ,{static: false}) public modalNewComj;
   @ViewChild(DDLDivnComponent ,{static: false}) public ddlDivn;
-  constructor(private comjService: ComjapiService) { }
+  constructor(private comjService: ComjapiService,private masterService : MasterapiService) { }
   public comj: COMJ;
   public searchComjNo : string = "";
   public searchComjFullName : string = "";
@@ -77,6 +78,7 @@ export class SearchComponent implements OnInit {
       this.comj.setComjPosition = this.result[i]["comjPosition"];
       this.comj.setComjDivnName = this.result[i]["comjDivnName"];
       this.comj.setComjCenterName = this.result[i]["comjCenterName"];
+      this.comj.setStatus = this.masterService.convertNumStatusToStr(this.result[i]["status"]);
       this.comjList.push(this.comj);      
     }  
   }

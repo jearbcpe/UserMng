@@ -90,6 +90,7 @@
                                             <th scope="col">ตำแหน่ง</th>
                                             <th scope="col">จังหวัด</th>
                                             <th scope="col">ศูนย์ยุติธรรมชุมชน</th>
+                                            <th scope="col">สถานะ</th>
                                             <th scope="col"></th>
                                           </tr>
                                         </thead>
@@ -100,6 +101,7 @@
                                           <td>{{item.getComjPosition}}</td>
                                           <td>{{item.getComjDivnName}}</td>
                                           <td>{{item.getComjCenterName}}</td>
+                                          <td>{{item.getStatus}}</td>
                                           <td>
                                               <div class="btn-group">
                                                   <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -108,6 +110,7 @@
                                                   <div class="dropdown-menu">
                                                     <button type="button" class="dropdown-item" (click)="showModal(item.getComjId)" >รายละเอียด</button>
                                                     <a class="dropdown-item" href="#">แก้ไข</a>
+                                                    <a class="dropdown-item" href="#">รีเซ็ตรหัสผ่าน</a>
                                                   </div>
                                                 </div>
                                           </td>

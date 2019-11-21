@@ -5,6 +5,10 @@ export class COMJ {
     private comjDivnName : string;
     private comjPosition : string;
     private comjCenterName: string;
+    private regCardDT: string;
+    private regCardBy: string;
+    private cardExp: string;
+    private status: string;
 
     set setComjId(value:string) {
         this.comjId = value;
@@ -41,10 +45,38 @@ export class COMJ {
         return this.comjDivnName;
     }
 
+    
     set setComjCenterName(value:string){
         this.comjCenterName = value;
     }
     get getComjCenterName(): string{
         return this.comjCenterName;
+    }
+
+    set setRegCardDT(value:string){
+        this.regCardDT = value;
+    }
+    get getRegCardDT(): string{
+        return this.regCardDT;
+    }
+    set setRegCardBy(value:string){
+        this.regCardBy = value;
+    }
+    get getRegCardBy(): string{
+        return this.regCardBy;
+    }
+    
+    set setCardExp(value:string){
+        this.cardExp = value;
+    }
+    get getCardExp(): string{
+        return this.cardExp;
+    }
+    
+    set setStatus(value:string){
+        this.status = value;
+    }
+    get getStatus(): string{
+        return this.status;
     }
 }
