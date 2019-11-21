@@ -1,0 +1,133 @@
+<div class="col-md-12" style="padding-top:12px; ">
+        <div class="col-md-12">
+                    <div class="container-fluid">              
+                        <div class="row bg-light shadow-sm p-2 mb-3 bg-white rounded">
+                            <h5>คณะกรรมการศูนย์ยุติธรรมชุมชน</h5>
+                            <hr>
+                        </div>
+                        <div class="row" >
+                            <div class="col-sm-12">
+                                <div class="row" >
+                                    <label for="exampleInputEmail1"><h5>ค้นหาคณะกรรมการ</h5></label>
+                                </div>
+                            </div>
+                                <div class="col-sm-12">
+                                    <div class="row" >
+                                        <div class="col-md-6"  >
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">เลขที่คณะกรรมการ</label>
+                                                <input type="text" [(ngModel)]="searchComjNo" name="searchComjNo" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+                                                <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+                                            </div>
+                                        </div>   
+                                        <div class="col-md-6"  >
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">ชื่อ-นามสกุล</label>
+                                                <input type="text" [(ngModel)]="searchComjFullName" name="searchComjFullName" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+                                            </div>                                    
+                                        </div>
+                                    </div>
+                                    <div class="row" >
+                                            <div class="col-md-6"  >
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">สำนักงานยุติธรรมจังหวัด</label>
+                                                    <app-ddl-divn></app-ddl-divn>
+                                                   <!-- <select class="form-control"[(ngModel)]="searchComjDivnId" name="searchComjDivnId" id="searchComjDivnId" >
+                                                            <option  [value]="0">เลือกทั้งหมด</option>
+                                                        <option  *ngFor="let divn of divnList" [value]="divn[0]">
+                                                                {{divn[1]}}
+                                                        </option>
+                                                    </select> -->
+                                                </div>
+                                            </div>   
+                                            <div class="col-md-6"  >
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">ศูนย์ยุติธรรมชุมชน</label>
+                                                    <!--
+                                                    <select class="form-control" id="exampleFormControlSelect1">
+                                                            <option>1</option>
+                                                          </select>
+                                                    -->
+                                                    <input type="text" [(ngModel)]="searchComjCenterName" name="searchComjCenterName" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+                                                </div>                                    
+                                            </div>
+                                        </div>
+                                    <button type="button" (click)="onUserClick($event)" class="btn btn-primary">ค้นหา</button>&nbsp;
+                                    <button type="submit" class="btn btn-secondary">ล้างค่า</button>
+                                </div>
+                                
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="col-sm-12">
+                                <button type="button" (click)="showModalNewComj()" class="btn btn-success float-right">
+                                    + เพิ่มคณะกรรมการฯ</button>
+                            </div>   
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="col-sm-6">
+                              <label>พบทั้งหมด {{totalComj}} รายการ </label>
+                            </div>
+                            <div class="col-sm-6">
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination float-right">
+                                      <li class="page-item"><button class="page-link" (click)="decreasePageNumber()">Previous</button></li>
+                                      <li *ngFor="let nPage of arrNumPage" class="page-item" [ngClass]="{active: nPage==currentPage}">
+                                        <button  class="page-link" (click)="displayComjList(nPage)" >{{nPage}}</button>
+                                      </li>
+                                      <li class="page-item"><button class="page-link" (click)="increasePageNumber()">Next</button></li>
+                                    </ul>
+                                  </nav>
+                              </div>
+
+                                <div class="col-sm-12">
+                                        
+                                <table class="table">
+                                        <thead class="thead-light">
+                                          <tr>
+                                           
+                                            <th scope="col">เลขที่คณะกรรมการ</th>
+                                            <th scope="col">ชื่อ-นามสกุล</th>
+                                            <th scope="col">ตำแหน่ง</th>
+                                            <th scope="col">จังหวัด</th>
+                                            <th scope="col">ศูนย์ยุติธรรมชุมชน</th>
+                                            <th scope="col"></th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr *ngFor="let item of comjList">
+                                          <td>{{item.getComjNo}}</td>
+                                          <td>{{item.getComjFullName}}</td>
+                                          <td>{{item.getComjPosition}}</td>
+                                          <td>{{item.getComjDivnName}}</td>
+                                          <td>{{item.getComjCenterName}}</td>
+                                          <td>
+                                              <div class="btn-group">
+                                                  <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    ดำเนินการ
+                                                  </button>
+                                                  <div class="dropdown-menu">
+                                                    <button type="button" class="dropdown-item" (click)="showModal(item.getComjId)" >รายละเอียด</button>
+                                                    <a class="dropdown-item" href="#">แก้ไข</a>
+                                                  </div>
+                                                </div>
+                                          </td>
+                                        </tr>
+                                        </tbody>
+                                      </table>
+                                      <nav aria-label="Page navigation example">
+                                          <ul class="pagination float-right">
+                                            <li class="page-item"><button class="page-link" (click)="decreasePageNumber()">Previous</button></li>
+                                            <li *ngFor="let nPage of arrNumPage" class="page-item" [ngClass]="{active: nPage==currentPage}">
+                                              <button  class="page-link" (click)="displayComjList(nPage)" >{{nPage}}</button>
+                                            </li>
+                                            <li class="page-item"><button class="page-link" (click)="increasePageNumber()">Next</button></li>
+                                          </ul>
+                                        </nav>
+                                      </div>    
+                        </div>
+                    </div>                  
+        </div>
+   
+</div>
+<app-modal-detail [refComjId]="refComjId"></app-modal-detail>
+<app-new-comj></app-new-comj>

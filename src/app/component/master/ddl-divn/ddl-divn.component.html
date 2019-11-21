@@ -1,0 +1,6 @@
+<select class="form-control"[(ngModel)]="selectComjDivnId" name="selectComjDivnId" id="searchComjDivnId" >
+        <option  [value]="0">เลือกทั้งหมด</option>
+    <option  *ngFor="let divn of divnList" [value]="divn[0]">
+            {{divn[1]}}
+    </option>
+</select>
