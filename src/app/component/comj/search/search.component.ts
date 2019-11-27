@@ -38,7 +38,7 @@ export class SearchComponent implements OnInit {
     this.searchComjDivnId = "0"
   }
 
-  onUserClick(){
+  onUserClick_searchComj(){
     this.comjList = []
     this.arrNumPage = []
     this.comjService.searchComj(this.searchComjNo,this.searchComjFullName,this.ddlDivn.selectComjDivnId,this.searchComjCenterName)

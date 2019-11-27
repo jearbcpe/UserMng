@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpParams  } from '@angular/common/http';
+import { COMJ } from 'src/app/class/comj';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,13 @@ export class ComjapiService {
   private exportData(send_data:Object)
   {
     return this.httpClient.post(this.webApi, send_data ,{ responseType: 'json' });
+  }
+
+  public addNewComj(comj:string)
+  {
+    var jsonData = { "func": "addNewComj" }
+    //let params = new HttpParams().set('id', '5');
+    return this.exportData(jsonData)
   }
   
 }
