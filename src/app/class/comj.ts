@@ -2,12 +2,15 @@ export class COMJ {
     private comjId : string;
     private comjNo : string;
     private comjFullName : string;
+    private comjDivnId : string;
     private comjDivnName : string;
     private comjPosition : string;
     private comjCenterName: string;
     private regCardDT: string;
     private regCardBy: string;
     private cardExp: string;
+    private comjUsername: string;
+    private comjPassword: string;
     private status: string;
 
     set setComjId(value:string) {
@@ -45,6 +48,12 @@ export class COMJ {
         return this.comjDivnName;
     }
 
+    set setComjDivnId(value:string){
+        this.comjDivnId = value;
+    }
+    get getComjDivnId(): string{
+        return this.comjDivnId;
+    }
     
     set setComjCenterName(value:string){
         this.comjCenterName = value;
@@ -72,7 +81,21 @@ export class COMJ {
     get getCardExp(): string{
         return this.cardExp;
     }
-    
+
+    set setComjUsername(value:string){
+        this.comjUsername = value;
+    }
+    get getComjUsername(): string{
+        return this.comjUsername;
+    }
+
+    set setComjPassword(value:string){
+        this.comjPassword = value;
+    }
+    get getComjPassword(): string{
+        return this.comjPassword;
+    }
+
     set setStatus(value:string){
         this.status = value;
     }

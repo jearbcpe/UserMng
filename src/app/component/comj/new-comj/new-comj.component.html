@@ -52,13 +52,13 @@
                       <div class="col-md-6"  >
                         <div class="form-group">
                             <label for="exampleInputEmail1">ออกบัตรโดย</label>
-                            <input type="text"  class="form-control"  [(ngModel)]="txtComjCenterName" name="txtComjCenterName" aria-describedby="emailHelp" placeholder="">
+                            <input type="text"  class="form-control"  [(ngModel)]="txtRegCardBy" name="txtRegCardBy" aria-describedby="emailHelp" placeholder="">
                         </div>                                    
                     </div>
                       <div class="col-md-6"  >
                           <div class="form-group">
                               <label for="exampleInputEmail1">วันที่ออกบัตร</label>
-                              <input type="text"  class="form-control"  [(ngModel)]="txtComjCenterName" name="txtComjCenterName" aria-describedby="emailHelp" placeholder="">
+                              <input type="text"  class="form-control"  [(ngModel)]="txtRegCardDT" name="txtRegCardDT" aria-describedby="emailHelp" placeholder="">
                           </div>                                    
                       </div>
                   </div>
@@ -66,14 +66,14 @@
                     <div class="col-md-6"  >
                       <div class="form-group">
                           <label for="exampleInputEmail1">วันที่บัตรหมดอายุ</label>
-                          <input type="text"  class="form-control"  [(ngModel)]="txtComjCenterName" name="txtComjCenterName" aria-describedby="emailHelp" placeholder="">
+                          <input type="text"  class="form-control"  [(ngModel)]="txtCardExp" name="txtCardExp" aria-describedby="emailHelp" placeholder="">
                       </div>                                    
                   </div>
                     <div class="col-md-6"  >
                         <div class="form-group">
                             <label for="exampleInputEmail1">สถานะ</label>
                 
-                            <select class="form-control" [(ngModel)]="selectNewComjDivnId" name="selectNewComjDivnId" id="searchComjDivnId" >
+                            <select class="form-control" [(ngModel)]="selectComjStatus" name="selectComjStatus" id="searchComjDivnId" >
                               <option [value]="0" >กรุณาเลือก</option>
                               <option [value]="1">ใช้งาน</option>
                               <option [value]="2">ไม่ใช้งาน</option>
@@ -81,12 +81,37 @@
                           </div>                                    
                     </div>
                 </div>
-
+                <div class="row" >
+                  <div class="col-md-6"  >
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Username</label>
+                        <input type="text"  class="form-control"  [(ngModel)]="txtComjUsername" name="txtComjUsername" aria-describedby="emailHelp" placeholder="">
+                    </div>                                    
+                </div>
+                  <div class="col-md-6"  >
+                      <div class="form-group">
+                      </div>                                    
+                  </div>
+              </div>
+              <div class="row" >
+                <div class="col-md-6"  >
+                  <div class="form-group">
+                      <label for="exampleInputEmail1">Password</label>
+                      <input type="text"  class="form-control"  [(ngModel)]="txtComjPassword" name="txtComjPassword" aria-describedby="emailHelp" placeholder="">
+                  </div>                                    
+              </div>
+                <div class="col-md-6"  >
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Re-Password</label>
+                        <input type="text"  class="form-control"  [(ngModel)]="txtComjRePassword" name="txtComjRePassword" aria-describedby="emailHelp" placeholder="">
+                    </div>                                    
+                </div>
+            </div>
         </div>  
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" (click)="addNewCom()" class="btn btn-primary">Save changes</button>
+        <button type="button" (click)="saveComj()" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
