@@ -40,7 +40,27 @@ export class ComjapiService {
                       "officeName":comj.getComjCenterName,
                       "regCardDT":comj.getRegCardDT,
                       "regCardBy":comj.getRegCardBy,
-                      "cardExp":comj.setCardExp,
+                      "cardExp":comj.getCardExp,
+                      "volUsername":comj.getComjUsername,
+                      "volPassword":comj.getComjPassword,
+                      "divnId":comj.getComjDivnId,
+                      "status":comj.getStatus
+                    }
+    //let params = new HttpParams().set('id', '5');
+    return this.exportData(jsonData)
+  }
+
+  public editComj(comj:COMJ)
+  {
+    var jsonData = {  "func":"updateNewComj",
+                      "comjId":comj.getComjId,
+                      "volNo":comj.getComjNo,
+                      "volFullName":comj.getComjFullName,
+                      "volPosition":comj.getComjPosition,
+                      "officeName":comj.getComjCenterName,
+                      "regCardDT":comj.getRegCardDT,
+                      "regCardBy":comj.getRegCardBy,
+                      "cardExp":comj.getCardExp,
                       "volUsername":comj.getComjUsername,
                       "volPassword":comj.getComjPassword,
                       "divnId":comj.getComjDivnId,
