@@ -69,5 +69,11 @@ export class ComjapiService {
     //let params = new HttpParams().set('id', '5');
     return this.exportData(jsonData)
   }
+
+  public resetPassword(comjId:string)
+  {
+    var jsonData = { "func": "resetPassword" , "comjId" : comjId}            
+    return this.exportData(jsonData)
+  }
   
 }

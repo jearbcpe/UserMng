@@ -67,9 +67,9 @@ export class SearchComponent implements OnInit {
       this.arrNumPage.push(i);
     }
 
-    var startPage = (this.currentPage - 1) * this.eachPage;
-    var endPage = startPage + this.eachPage;
-    for (let i = startPage;i < endPage;i++)
+    var rowStartPage = (this.currentPage - 1) * this.eachPage;
+    var rowendPage = rowStartPage + this.eachPage;
+    for (let i = rowStartPage;i < rowendPage;i++)
     {
       this.comj = new COMJ;
       this.comj.setComjId = this.result[i]["comjId"];
@@ -81,6 +81,17 @@ export class SearchComponent implements OnInit {
       this.comj.setStatus = this.masterService.convertNumStatusToStr(this.result[i]["status"]);
       this.comjList.push(this.comj);      
     }  
+  }
+
+  resetPassword(comjId:string)
+  {
+    this.comjService.resetPassword(comjId)
+    .subscribe((data)=>{
+      if(data == "1")
+        alert("รีซ็ตรหัสผ่านสำเร็จ")
+      else
+        alert("รีเซ็ตรหัสผ่านไม่สำเร็จ")
+    });
   }
 
   increasePageNumber()

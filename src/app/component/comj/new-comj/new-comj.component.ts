@@ -98,13 +98,29 @@ export class NewComjComponent implements OnInit {
   editComj(comjId:string)
   {
     this.comj = new COMJ();
+    this.comj.setComjNo = this.txtComjNo;
+    this.comj.setComjFullName = this.txtComjFullName;
+    this.comj.setComjDivnName = this.txtComjDivnName;
+    this.comj.setComjDivnId = this.ddlDivn.selectComjDivnId;
+    this.comj.setComjCenterName = this.txtComjCenterName;
+    this.comj.setComjPosition = this.txtComjPosition;
+    this.comj.setRegCardBy = this.txtRegCardBy;
+    this.comj.setRegCardDT = this.txtRegCardDT;
+    this.comj.setCardExp = this.txtCardExp;
+    this.comj.setStatus = this.selectComjStatus
+    this.comj.setComjUsername = this.txtComjUsername;
+    this.comj.setComjPassword = this.txtComjPassword;
     this.comj.setComjId = comjId;
     this.comjService.editComj(this.comj).subscribe((data)=> {
       if(data=="1")
-        alert("success");  
+      {
+        alert("แก้ไขข้อมูลสำเร็จ");  
         jQuery(this.modalComjDetail.nativeElement).modal('hide');  
+      }
+      else
+        alert("พบข้อผิดพลาด แก้ไขข้อมูลไม่สำเร็จ");  
+        
     });
-    alert("edit");
   }
 
   addNewComj(){
@@ -124,8 +140,13 @@ export class NewComjComponent implements OnInit {
 
     this.comjService.addNewComj(this.comj).subscribe((data)=> {
       if(data=="1")
-        alert("success");  
+      {
+        alert("เพิ่มข้อมูลสำเร็จ");  
         jQuery(this.modalComjDetail.nativeElement).modal('hide');  
+      }
+      else
+        alert("พบข้อผิดพลาด เพิ่มข้อมูลไม่สำเร็จ");  
+       
     });
     
 
