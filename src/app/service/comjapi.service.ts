@@ -9,12 +9,14 @@ export class ComjapiService {
 
   constructor(private httpClient: HttpClient) { }
   public webApi = "http://10.222.4.234/msc_dev/index.php?r=ws/wsComj";
+  private token = localStorage.getItem("token");
   public searchComj(comjNo:string,comjFullName:string,comjDivnId:string,comjCenterName:string){
-    var jsonData = { "func": "getListComj" ,
-                    "comjNo" : comjNo.trim(),
-                    "comjFullName":comjFullName.trim(),
-                    "comjDivnId" : comjDivnId,
-                    "comjCenterName" : comjCenterName.trim(),
+    var jsonData = { "token" : this.token,
+                     "func": "getListComj" ,
+                     "comjNo" : comjNo.trim(),
+                     "comjFullName":comjFullName.trim(),
+                     "comjDivnId" : comjDivnId,
+                     "comjCenterName" : comjCenterName.trim(),
                   }
     //let params = new HttpParams().set('id', '5');
     return this.exportData(jsonData);
@@ -22,7 +24,7 @@ export class ComjapiService {
 
   public retrieveComjDetail(comjId:string)
   {
-    var jsonData = { "func": "retrieveComjDetail" , "comjId" : comjId}
+    var jsonData = { "token" : this.token, "func": "retrieveComjDetail" , "comjId" : comjId}
     return this.exportData(jsonData)
   }
 
@@ -33,7 +35,8 @@ export class ComjapiService {
 
   public addNewComj(comj:COMJ)
   {
-    var jsonData = {  "func":"addNewComj",
+    var jsonData = {  "token" : this.token,
+                      "func":"addNewComj",
                       "volNo":comj.getComjNo,
                       "volFullName":comj.getComjFullName,
                       "volPosition":comj.getComjPosition,
@@ -52,7 +55,8 @@ export class ComjapiService {
 
   public editComj(comj:COMJ)
   {
-    var jsonData = {  "func":"updateNewComj",
+    var jsonData = {  "token" : this.token,
+                      "func":"updateNewComj",
                       "comjId":comj.getComjId,
                       "volNo":comj.getComjNo,
                       "volFullName":comj.getComjFullName,
@@ -72,7 +76,8 @@ export class ComjapiService {
 
   public resetPassword(comjId:string)
   {
-    var jsonData = { "func": "resetPassword" , "comjId" : comjId}            
+    var jsonData = { "token" : this.token,
+                     "func": "resetPassword" , "comjId" : comjId}            
     return this.exportData(jsonData)
   }
   

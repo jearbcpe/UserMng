@@ -15,10 +15,12 @@ import { NewComjComponent } from './component/comj/new-comj/new-comj.component';
 import { ModalDetailComponent } from './component/comj/modal-detail/modal-detail.component';
 import { DDLDivnComponent } from './component/master/ddl-divn/ddl-divn.component';
 import { UserComponent } from './component/msc/user/user.component';
+import { AuthenComponent } from './component/authen/authen.component';
 
 
 const appRoutes: Routes = [
   { path: '' , component : DashboardComponent},
+  { path: 'authen' , component : AuthenComponent},
   { path: 'home/dashboard' , component : DashboardComponent},
   { path: 'comj/search' , component : SearchComponent},
   { path: 'report/stat' , component : StatComponent},
@@ -36,7 +38,8 @@ const appRoutes: Routes = [
     NewComjComponent,
     ModalDetailComponent,
     DDLDivnComponent,
-    UserComponent
+    UserComponent,
+    AuthenComponent
   ],
   imports: [
     BrowserModule,

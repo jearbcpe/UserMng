@@ -35,7 +35,7 @@ export class SearchComponent implements OnInit {
   public totalComj : number = 0;
 
   ngOnInit() {
-    this.searchComjDivnId = "0"
+    this.searchComjDivnId = "0";
   }
 
   onUserClick_searchComj(){
