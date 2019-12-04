@@ -52,6 +52,22 @@
                                                 </div>                                    
                                             </div>
                                         </div>
+                                        <div class="row" >
+                                          <div class="col-md-6"  >
+                                            <div class="form-group">
+                                              <label for="exampleInputEmail1">สถานะ</label>
+                                  
+                                              <select class="form-control" [(ngModel)]="searchComjStatus" name="searchComjStatus" id="searchComjDivnId" >
+                                                <option [value]="0" >กรุณาเลือก</option>
+                                                <option [value]="1">ใช้งาน</option>
+                                                <option [value]="2">ไม่ใช้งาน</option>
+                                        </select>
+                                            </div>     
+                                          </div>   
+                                          <div class="col-md-6"  >
+                                                                           
+                                          </div>
+                                      </div>
                                     <button type="button" (click)="onUserClick_searchComj($event)" class="btn btn-primary">ค้นหา</button>&nbsp;
                                     <button type="submit" class="btn btn-secondary">ล้างค่า</button>
                                 </div>

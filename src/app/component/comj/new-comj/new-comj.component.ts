@@ -84,7 +84,11 @@ export class NewComjComponent implements OnInit {
     this.txtRegCardDT = this.result[0]["regCardDT"];
     this.txtRegCardBy = this.result[0]["regCardBy"];
     this.txtCardExp= this.result[0]["cardExp"];
-    this.selectComjStatus = this.result[0]["status"];
+    //this.selectComjStatus = this.result[0]["status"];
+    if(this.result[0]["status"] == "0")
+      this.selectComjStatus = "2";
+    else if(this.result[0]["status"] == "1")
+      this.selectComjStatus = "1";
     this.txtComjUsername = this.result[0]["comjUsername"];
   }
 

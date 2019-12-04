@@ -24,6 +24,7 @@ export class SearchComponent implements OnInit {
   public searchComjFullName : string = "";
   public searchComjDivnId : string = "";
   public searchComjCenterName : string = "";
+  public searchComjStatus : string = "0";
   public comjList = new Array();
   public divnList = new Array();
   public refComjId : string;
@@ -41,7 +42,7 @@ export class SearchComponent implements OnInit {
   onUserClick_searchComj(){
     this.comjList = []
     this.arrNumPage = []
-    this.comjService.searchComj(this.searchComjNo,this.searchComjFullName,this.ddlDivn.selectComjDivnId,this.searchComjCenterName)
+    this.comjService.searchComj(this.searchComjNo,this.searchComjFullName,this.ddlDivn.selectComjDivnId,this.searchComjCenterName,this.searchComjStatus)
     .subscribe((data)=>{
       this.result = data
       this.displayComjList(1)
