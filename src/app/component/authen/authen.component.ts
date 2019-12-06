@@ -15,9 +15,6 @@ export class AuthenComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       localStorage.setItem("token", params['t']);
     });
-    //alert(this.token);
-    
-    
     this.router.navigate(['home/dashboard']);
   }
 

@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpParams  } from '@angular/common/http';
+
 @Injectable({
   providedIn: 'root'
 })
-export class AuthenService {
+export class AuthenapiService {
 
   constructor(private httpClient: HttpClient) { }
 
@@ -15,5 +16,4 @@ export class AuthenService {
     //var jsonData = {"func": "verifyToken" , "token" : this.token}
     //return this.httpClient.post(this.webApi, jsonData ,{ responseType: 'json' });
   }
-
 }

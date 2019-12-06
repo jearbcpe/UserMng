@@ -1,12 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,ViewChild } from '@angular/core';
 import { COMJ } from 'src/app/class/comj';
 import { ComjapiService } from '../../../service/comjapi.service';
-import { ViewChild } from '@angular/core';
 import { ModalDetailComponent } from '../modal-detail/modal-detail.component';
 import { NewComjComponent } from '../new-comj/new-comj.component';
 import { DDLDivnComponent } from '../../master/ddl-divn/ddl-divn.component';
 import { MasterapiService } from 'src/app/service/masterapi.service';
-
+import { VerifyComponent } from '../../verify/verify.component';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -14,7 +13,7 @@ import { MasterapiService } from 'src/app/service/masterapi.service';
 })
 
 export class SearchComponent implements OnInit {
-
+  @ViewChild(VerifyComponent ,{static: false}) public modalVerify :VerifyComponent;
   @ViewChild(ModalDetailComponent ,{static: false}) public modalDetail;
   @ViewChild(NewComjComponent ,{static: false}) public modalNewComj;
   @ViewChild(DDLDivnComponent ,{static: false}) public ddlDivn;
@@ -44,8 +43,14 @@ export class SearchComponent implements OnInit {
     this.arrNumPage = []
     this.comjService.searchComj(this.searchComjNo,this.searchComjFullName,this.ddlDivn.selectComjDivnId,this.searchComjCenterName,this.searchComjStatus)
     .subscribe((data)=>{
-      this.result = data
-      this.displayComjList(1)
+      //alert(data["status"]);
+      if(data["status"]!="expired")
+      {
+        this.result = data
+        this.displayComjList(1)
+      }
+      else
+        this.modalVerify.loginDialog();
     });
   }
 

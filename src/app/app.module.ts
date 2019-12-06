@@ -16,6 +16,7 @@ import { ModalDetailComponent } from './component/comj/modal-detail/modal-detail
 import { DDLDivnComponent } from './component/master/ddl-divn/ddl-divn.component';
 import { UserComponent } from './component/msc/user/user.component';
 import { AuthenComponent } from './component/authen/authen.component';
+import { VerifyComponent } from './component/verify/verify.component';
 
 
 const appRoutes: Routes = [
@@ -39,7 +40,8 @@ const appRoutes: Routes = [
     ModalDetailComponent,
     DDLDivnComponent,
     UserComponent,
-    AuthenComponent
+    AuthenComponent,
+    VerifyComponent
   ],
   imports: [
     BrowserModule,

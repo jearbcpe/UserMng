@@ -13,8 +13,6 @@ export class ComjapiService {
   private token = localStorage.getItem("token");
 
   public searchComj(comjNo:string,comjFullName:string,comjDivnId:string,comjCenterName:string,comjStatus:string){
-    //if(this.verifyToken(this.token))
-   // {
       var jsonData = { "token" : this.token,
       "func": "getListComj" ,
       "comjNo" : comjNo.trim(),
@@ -24,14 +22,12 @@ export class ComjapiService {
       "comjStatus" : comjStatus
       }
       return this.exportData(jsonData);
-   //}
    
   }
 
   public retrieveComjDetail(comjId:string)
   {
     var jsonData = { "token" : this.token, "func": "retrieveComjDetail" , "comjId" : comjId}
-    alert(this.exportData(jsonData));
     return this.exportData(jsonData);
   }
 

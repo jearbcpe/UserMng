@@ -30,8 +30,8 @@ export class ModalDetailComponent implements OnInit {
   {
     this.comjService.retrieveComjDetail(comjId)
     .subscribe((data)=>{
-      this.result = data
-      this.displayComjDetail()
+      this.result = data;
+      this.displayComjDetail();
     });
   }
 
