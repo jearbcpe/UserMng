@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenapiService } from 'src/app/service/authenapi.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-menu',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainMenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authenApi : AuthenapiService,private router: Router) { }
 
   ngOnInit() {
   }
 
+  public onLogout()
+  {
+    if(confirm("ยืนยันการออกจากระบบ"))
+    {
+      this.authenApi.logout()
+      .subscribe((data)=>{
+        if(data["status"]=="success"){
+          alert("ออกจากระบบสำเร็จ");
+          this.router.navigate(['home/dashboard']);
+        }
+      });    
+    }
+  }
 }

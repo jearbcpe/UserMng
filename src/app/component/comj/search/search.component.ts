@@ -6,6 +6,7 @@ import { NewComjComponent } from '../new-comj/new-comj.component';
 import { DDLDivnComponent } from '../../master/ddl-divn/ddl-divn.component';
 import { MasterapiService } from 'src/app/service/masterapi.service';
 import { VerifyComponent } from '../../verify/verify.component';
+import { AuthenapiService } from 'src/app/service/authenapi.service';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -17,7 +18,7 @@ export class SearchComponent implements OnInit {
   @ViewChild(ModalDetailComponent ,{static: false}) public modalDetail;
   @ViewChild(NewComjComponent ,{static: false}) public modalNewComj;
   @ViewChild(DDLDivnComponent ,{static: false}) public ddlDivn;
-  constructor(private comjService: ComjapiService,private masterService : MasterapiService) { }
+  constructor(private comjService: ComjapiService,private masterService : MasterapiService,private authenApi : AuthenapiService) { }
   public comj: COMJ;
   public searchComjNo : string = "";
   public searchComjFullName : string = "";
@@ -36,6 +37,13 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     this.searchComjDivnId = "0";
+    //Verify User
+    this.authenApi.verifyToken()
+    .subscribe((data)=>{
+        if(data["status"]=="expired"){
+            this.modalVerify.loginDialog();
+        }
+    });        
   }
 
   onUserClick_searchComj(){
@@ -44,10 +52,9 @@ export class SearchComponent implements OnInit {
     this.comjService.searchComj(this.searchComjNo,this.searchComjFullName,this.ddlDivn.selectComjDivnId,this.searchComjCenterName,this.searchComjStatus)
     .subscribe((data)=>{
       //alert(data["status"]);
-      if(data["status"]!="expired")
-      {
-        this.result = data
-        this.displayComjList(1)
+      if(data["status"]!="expired"){
+        this.result = data;
+        this.displayComjList(1);
       }
       else
         this.modalVerify.loginDialog();

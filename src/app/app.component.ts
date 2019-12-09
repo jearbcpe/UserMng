@@ -1,7 +1,6 @@
 import { Component,ViewChild } from '@angular/core';
 import { VerifyComponent } from './component/verify/verify.component';
 import { Router, Event, NavigationStart, NavigationEnd, NavigationError } from '@angular/router';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,16 +8,14 @@ import { Router, Event, NavigationStart, NavigationEnd, NavigationError } from '
 })
 export class AppComponent {
   title = 'comj';
+  
+
   @ViewChild(VerifyComponent ,{static: false}) public modalVerify :VerifyComponent;
   constructor(private router: Router) {
-
     this.router.events.subscribe((event: Event) => {
         if (event instanceof NavigationStart) {
-            // Show loading indicator
-            //alert(localStorage.getItem("token"));
-           this.modalVerify.loginDialog();
+                
         }
-
         /*
         if (event instanceof NavigationEnd) {
             // Hide loading indicator
@@ -34,7 +31,8 @@ export class AppComponent {
         */
     });
 
-}
+    }
+
 }
 
 
