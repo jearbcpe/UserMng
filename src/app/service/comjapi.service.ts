@@ -10,10 +10,10 @@ export class ComjapiService {
 
   constructor(private httpClient: HttpClient) { }
   public webApi = "http://10.222.4.234/msc_dev/index.php?r=ws/wsComj";
-  private token = localStorage.getItem("token");
+  //private token = localStorage.getItem("token");
 
   public searchComj(comjNo:string,comjFullName:string,comjDivnId:string,comjCenterName:string,comjStatus:string){
-      var jsonData = { "token" : this.token,
+      var jsonData = { "token" : localStorage.getItem("token"),
       "func": "getListComj" ,
       "comjNo" : comjNo.trim(),
       "comjFullName":comjFullName.trim(),
@@ -27,7 +27,7 @@ export class ComjapiService {
 
   public retrieveComjDetail(comjId:string)
   {
-    var jsonData = { "token" : this.token, "func": "retrieveComjDetail" , "comjId" : comjId}
+    var jsonData = { "token" : localStorage.getItem("token"), "func": "retrieveComjDetail" , "comjId" : comjId}
     return this.exportData(jsonData);
   }
 
@@ -38,7 +38,7 @@ export class ComjapiService {
 
   public addNewComj(comj:COMJ)
   {
-    var jsonData = {  "token" : this.token,
+    var jsonData = {  "token" : localStorage.getItem("token"),
                       "func":"addNewComj",
                       "volNo":comj.getComjNo,
                       "volFullName":comj.getComjFullName,
@@ -58,7 +58,7 @@ export class ComjapiService {
 
   public editComj(comj:COMJ)
   {
-    var jsonData = {  "token" : this.token,
+    var jsonData = {  "token" : localStorage.getItem("token"),
                       "func":"updateNewComj",
                       "comjId":comj.getComjId,
                       "volNo":comj.getComjNo,
@@ -79,7 +79,7 @@ export class ComjapiService {
 
   public resetPassword(comjId:string)
   {
-    var jsonData = { "token" : this.token,
+    var jsonData = { "token" : localStorage.getItem("token"),
                      "func": "resetPassword" , "comjId" : comjId}            
     return this.exportData(jsonData)
   }
