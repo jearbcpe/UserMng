@@ -10,10 +10,12 @@ import { Router } from '@angular/router';
 export class MainMenuComponent implements OnInit {
 
   constructor(private authenApi : AuthenapiService,private router: Router) { }
-
+  public x :string = "";
   ngOnInit() {
+    this.x = localStorage.getItem("userFullName");
   }
 
+  
   public onLogout()
   {
     if(confirm("ยืนยันการออกจากระบบ"))
@@ -21,6 +23,8 @@ export class MainMenuComponent implements OnInit {
       this.authenApi.logout()
       .subscribe((data)=>{
         if(data["status"]=="success"){
+          this.x = "";
+          localStorage.removeItem('userFullName');
           alert("ออกจากระบบสำเร็จ");
           this.router.navigate(['home/dashboard']);
         }

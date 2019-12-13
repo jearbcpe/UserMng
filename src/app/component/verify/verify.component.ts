@@ -32,8 +32,14 @@ export class VerifyComponent implements OnInit {
     .subscribe((data)=>{
         if(data["status"]=="success"){
           this.router.navigate(['authen'],{ queryParams: { t : data['token'] } });
+          //jQuery(this.modalVerify.nativeElement).modal('hide'); 
+          window.location.reload();
+        }
+        else if(data["status"]=="fail")
+        {
+          alert("ชื่อผู้ใช้งานหรือรหัสผ่านไม่ถูกต้อง");
         }
     });    
-    jQuery(this.modalVerify.nativeElement).modal('hide'); 
+   
   }
 }

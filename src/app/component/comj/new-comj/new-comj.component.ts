@@ -94,7 +94,13 @@ export class NewComjComponent implements OnInit {
 
   saveComj(mode:string){
     if(this.mode == "new")
-      this.addNewComj();
+    {
+      if(this.txtComjNo != "")
+        this.addNewComj();
+      else
+        alert("กรุณาระบุเลขประจำตัวคณะกรรมการฯ")
+    }
+      
     else if(this.mode == "edit")
       this.editComj(this.comjIdForEdit);
   }

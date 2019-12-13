@@ -26,4 +26,10 @@ export class AuthenapiService {
     var jsonData = { "func": "verifyUser" , "username" : username,"password" : password }
     return this.httpClient.post(this.webApi, jsonData ,{ responseType: 'json' });
   }
+
+  public getUserDetail()
+  {
+    var jsonData = {"func": "getUserDetail" , "token" : localStorage.getItem("token")}
+    return this.httpClient.post(this.webApi, jsonData ,{ responseType: 'json' });
+  }
 }
