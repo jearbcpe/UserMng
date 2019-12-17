@@ -14,7 +14,7 @@
                     <div class="row" >
                         <div class="col-md-6"  >
                             <div class="form-group">
-                                <label for="exampleInputEmail1">รหัสคณะกรรมการศูนย์</label>
+                                <label>รหัสคณะกรรมการศูนย์</label>
                                 <input type="text"  [(ngModel)]="txtComjNo" name="txtComjNo" class="form-control"   
                                 #localComjNo="ngModel"
                                 [ngClass] = "{'is-invalid' : localComjNo.errors && localComjNo.touched}"
@@ -28,7 +28,7 @@
                     <div class="row" >
                         <div class="col-md-6"  >
                             <div class="form-group">
-                                <label for="exampleInputEmail1">ชื่อ-นามสกุล</label>
+                                <label>ชื่อ-นามสกุล</label>
                                 <input type="text" [(ngModel)]="txtComjFullName" name="txtComjFullName" class="form-control"  
                                 #localComjFullName="ngModel" 
                                 [ngClass] = "{'is-invalid' : localComjFullName.errors && localComjFullName.touched}"
@@ -39,7 +39,7 @@
                         </div>
                         <div class="col-md-6"  >
                             <div class="form-group">
-                                <label for="exampleInputEmail1">ตำแหน่ง</label>
+                                <label>ตำแหน่ง</label>
                                 <input type="text" [(ngModel)]="txtComjPosition" name="txtComjPosition"  class="form-control" 
                                 #localComjPosition="ngModel" 
                                 [ngClass] = "{'is-invalid' : localComjPosition.errors && localComjPosition.touched}"
@@ -52,7 +52,7 @@
                     <div class="row" >
                         <div class="col-md-6"  >
                             <div class="form-group">
-                                <label for="exampleInputEmail1">จังหวัด</label>
+                                <label>จังหวัด</label>
                                <!-- <app-ddl-divn></app-ddl-divn>-->
                                 <select class="form-control" [(ngModel)]="selectComjDivnId" name="selectComjDivnId" id="selectComjDivnId" 
                                 #localDivnId="ngModel" 
@@ -69,8 +69,13 @@
                         </div>
                         <div class="col-md-6"  >
                             <div class="form-group">
-                                <label for="exampleInputEmail1">ศูนย์ยุติธรรมชุมชน</label>
-                                <input type="text"  class="form-control" [(ngModel)]="txtComjCenterName" name="txtComjCenterName" aria-describedby="emailHelp" placeholder="">
+                                <label >ศูนย์ยุติธรรมชุมชน</label>
+                                <input type="text"  class="form-control" [(ngModel)]="txtComjCenterName" name="txtComjCenterName" 
+                                #localComjCenterName="ngModel" 
+                                [ngClass] = "{'is-invalid' : localComjCenterName.errors && localComjCenterName.touched}"
+                                required
+                                >
+                                <div class="invalid-feedback">โปรดระบุศูนย์ยุติธรรมชุมชน</div>
                             </div>                                    
                         </div>
                     </div>
@@ -99,11 +104,16 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">สถานะ</label>
                 
-                            <select class="form-control" [(ngModel)]="selectComjStatus" name="selectComjStatus" id="searchComjDivnId" >
-                              <option [value]="0"  >กรุณาเลือก</option>
+                            <select class="form-control" [(ngModel)]="selectComjStatus" name="selectComjStatus" id="searchComjDivnId" 
+                            #localComjStatus="ngModel" 
+                            [ngClass] = "{'is-invalid' : localComjStatus.errors && localComjStatus.touched}"
+                            pattern="[^0]+"
+                            >
+                              <option [value]="0">กรุณาเลือก</option>
                               <option [value]="1">ใช้งาน</option>
                               <option [value]="2">ไม่ใช้งาน</option>
-                      </select>
+                            </select>
+                            <div class="invalid-feedback">โปรดระบุสถานะ</div>
                           </div>                                    
                     </div>
                 </div>
@@ -111,8 +121,13 @@
                   <div class="col-md-6"  >
                     <div class="form-group">
                         <label for="exampleInputEmail1">Username</label>
-                        <input type="text"  class="form-control"  [(ngModel)]="txtComjUsername" name="txtComjUsername" aria-describedby="emailHelp" placeholder="">
-                    </div>                                    
+                        <input type="text"  class="form-control"  [(ngModel)]="txtComjUsername" name="txtComjUsername" aria-describedby="emailHelp" placeholder=""
+                        #localComjUsername="ngModel" 
+                        [ngClass] = "{'is-invalid' : localComjUsername.errors && localComjUsername.touched}"
+                        required
+                        >
+                        <div class="invalid-feedback">โปรดระบุชื่อผู้ใช้งาน</div>     
+                    </div>                          
                 </div>
                   <div class="col-md-6"  >
                       <div class="form-group">
@@ -123,13 +138,23 @@
                 <div class="col-md-6"  >
                   <div class="form-group">
                       <label for="exampleInputEmail1">Password</label>
-                      <input type="password"  class="form-control"  [(ngModel)]="txtComjPassword" name="txtComjPassword" aria-describedby="emailHelp" placeholder="">
+                      <input type="password"  class="form-control"  [(ngModel)]="txtComjPassword" name="txtComjPassword" 
+                        #localComjPassword="ngModel" 
+                        [ngClass] = "{'is-invalid' : (localComjPassword.errors && localComjPassword.touched && this.mode == 'new') }"
+                        required
+                      >
+                      <div class="invalid-feedback">โปรดระบุรหัสผ่าน</div> 
                   </div>                                    
               </div>
                 <div class="col-md-6"  >
                     <div class="form-group">
                         <label for="exampleInputEmail1">Re-Password</label>
-                        <input type="password"  class="form-control"  [(ngModel)]="txtComjRePassword" name="txtComjRePassword" aria-describedby="emailHelp" placeholder="">
+                        <input type="password"  class="form-control"  [(ngModel)]="txtComjRePassword" name="txtComjRePassword" 
+                        #localComjRePassword="ngModel" 
+                        [ngClass] = "{'is-invalid' : (localComjRePassword.errors && localComjRePassword.touched && this.mode == 'new') || ((this.txtComjPassword != this.txtComjRePassword && this.txtComjRePassword != '') ) }"
+                        required
+                        >
+                        <div class="invalid-feedback">โปรดระบุรหัสผ่านให้ตรงกัน</div> 
                     </div>                                    
                 </div>
             </div>
