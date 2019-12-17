@@ -6,6 +6,8 @@ import { DDLDivnComponent } from '../../master/ddl-divn/ddl-divn.component';
 import { ComjapiService } from '../../../service/comjapi.service';
 import { MasterapiService } from 'src/app/service/masterapi.service';
 
+import {NgForm} from '@angular/forms';
+
 declare var jQuery:any;
 @Component({
   selector: 'app-new-comj',
@@ -14,6 +16,7 @@ declare var jQuery:any;
 })
 export class NewComjComponent implements OnInit {
   @ViewChild('myModal', {static: false}) public modalComjDetail:ElementRef;
+  @ViewChild('formComj', {static: false}) public formComj:NgForm;
   @ViewChild(DDLDivnComponent ,{static: false}) public ddlDivn;
 
   constructor(private comjService: ComjapiService,private masterService : MasterapiService) { }
@@ -24,7 +27,6 @@ export class NewComjComponent implements OnInit {
   public txtComjNo : string;
   public txtComjFullName : string;
   public txtComjDivnName : string;
-  public selectComjDivnId : string;
   public txtComjCenterName : string;
   public txtComjPosition : string;
   public txtRegCardBy : string;
@@ -35,22 +37,24 @@ export class NewComjComponent implements OnInit {
   public txtComjRePassword : string;
   public selectComjStatus : string = "0";
   public result : Object;
-  
+  public divnList = new Array();
+  public selectComjDivnId : string;
+
   ngOnInit() {
-    this.selectNewComjDivnId = "0";
-    this.txtComjNo = "";
-    this.txtComjFullName = "";
-    this.txtComjDivnName = "";
-    this.selectComjDivnId = "";
-    this.txtComjCenterName = "";
-    this.txtComjPosition = "";
-    this.txtRegCardBy = "";
-    this.txtRegCardDT = "";
-    this.txtCardExp = "";
-    this.txtComjUsername = "";
-    this.txtComjPassword = "";
-    this.txtComjRePassword = "";
-    this.selectComjStatus = "0";
+   this.setDDLDivn();
+  }
+
+  setDDLDivn()
+  {
+    this.masterService.getDivn()
+    .subscribe((data)=>{
+      var obj = JSON.stringify(data);
+      var sizeofObj = Object.keys(JSON.parse(obj)).length;
+      for (let i =0;i<sizeofObj;i++)
+      {
+        this.divnList.push([data[i]["divnId"],data[i]["divnName"]]);      
+      }  
+    });
   }
 
   showModal(mode:string,comjId:string = ""){
@@ -92,13 +96,17 @@ export class NewComjComponent implements OnInit {
     this.txtComjUsername = this.result[0]["comjUsername"];
   }
 
+  onSubmitNewComj(formObject:NgForm)
+  {
+    alert(formObject.value["txtComjNo"]);
+  }
   saveComj(mode:string){
     if(this.mode == "new")
     {
-      if(this.txtComjNo != "")
+      //if(this.txtComjNo != "")
         this.addNewComj();
-      else
-        alert("กรุณาระบุเลขประจำตัวคณะกรรมการฯ")
+      //else
+       // alert("กรุณาระบุเลขประจำตัวคณะกรรมการฯ")
     }
       
     else if(this.mode == "edit")

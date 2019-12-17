@@ -126,7 +126,9 @@ export class SearchComponent implements OnInit {
     // jQuery(this.modal.nativeElement).modal('show'); 
   }
   showModalNewComj(){
-
+    this.modalNewComj.formComj.resetForm();
+    this.modalNewComj.formComj.controls['selectComjDivnId'].setValue("0");
+    this.modalNewComj.formComj.controls['selectComjStatus'].setValue("0");
     this.modalNewComj.showModal("new");
   }
   showModalEditComj(comjId : string){
