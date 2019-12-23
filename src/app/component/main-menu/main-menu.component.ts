@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenapiService } from 'src/app/service/authenapi.service';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-main-menu',
@@ -8,14 +8,31 @@ import { Router } from '@angular/router';
   styleUrls: ['./main-menu.component.css']
 })
 export class MainMenuComponent implements OnInit {
+  constructor(private route: ActivatedRoute,private authenApi : AuthenapiService,private router: Router) { }
+  public nameProfile :string = "";
 
-  constructor(private authenApi : AuthenapiService,private router: Router) { }
-  public x :string = "";
   ngOnInit() {
-    this.x = localStorage.getItem("userFullName");
+
+    
+    
+
+    this.route.queryParams.subscribe(params => {
+
+        if(params['n']!=undefined)
+          this.nameProfile = params['n'];     
+        else
+          this.nameProfile = localStorage.getItem("userFullName");
+    });
+
+    
   }
 
-  
+  /*
+  public parentMethod(childData:string)
+  {
+    alert(childData)
+  }
+  */
   public onLogout()
   {
     if(confirm("ยืนยันการออกจากระบบ"))
@@ -23,7 +40,7 @@ export class MainMenuComponent implements OnInit {
       this.authenApi.logout()
       .subscribe((data)=>{
         if(data["status"]=="success"){
-          this.x = "";
+          this.nameProfile = "";
           localStorage.removeItem('userFullName');
           alert("ออกจากระบบสำเร็จ");
           this.router.navigate(['home/dashboard']);

@@ -23,12 +23,12 @@
         </li>
         -->
       </ul>
-      <ul class="nav navbar-toolbar navbar-right navbar-toolbar-right">
+      <ul class="nav navbar-toolbar navbar-right navbar-toolbar-right"  [ngStyle]="{'display':this.nameProfile ? 'inline' :'none'}">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {{this.x}}
+            {{this.nameProfile}}
           </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown" >
             <!--
             <a class="dropdown-item" href="#">ข้อมูลผู้ใช้</a>
             <a class="dropdown-item" href="#">เปลี่ยนรหัสผ่าน</a>
@@ -37,7 +37,6 @@
             <button (click)="onLogout()" class="dropdown-item" href="#">ออกจากระบบ</button>
           </div>
         </li>
-
       </ul>
     </div>
 </nav>
