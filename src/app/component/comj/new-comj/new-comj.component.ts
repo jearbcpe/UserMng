@@ -79,7 +79,7 @@ export class NewComjComponent implements OnInit {
   displayInitialComjDetail()
   {
     var obj = JSON.stringify(this.result);
-    var sizeofObj = Object.keys(JSON.parse(obj)).length;
+    //var sizeofObj = Object.keys(JSON.parse(obj)).length;
     this.txtComjNo = this.result[0]["comjNo"];
     this.txtComjFullName = this.result[0]["comjFullName"];
     this.txtComjPosition = this.result[0]["comjPosition"];

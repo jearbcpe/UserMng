@@ -17,7 +17,6 @@ export class AuthenapiService {
 
   public logout()
   {
-    alert(localStorage.getItem("token"))
     var jsonData = {"func": "logout" , "token" : localStorage.getItem("token")}
     return this.httpClient.post(this.webApi, jsonData ,{ responseType: 'json' });
   }

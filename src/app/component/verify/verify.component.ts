@@ -31,9 +31,10 @@ export class VerifyComponent implements OnInit {
     this.authenApi.verifyUser(this.txtUsername,btoa(this.txtPassword))
     .subscribe((data)=>{
         if(data["status"]=="success"){
+          jQuery(this.modalVerify.nativeElement).modal('hide'); 
           this.router.navigate(['authen'],{ queryParams: { t : data['token'] , n : data['name'] } });
-          //jQuery(this.modalVerify.nativeElement).modal('hide'); 
-          window.location.reload();
+          
+          //window.location.reload();
         }
         else if(data["status"]=="fail")
         {
