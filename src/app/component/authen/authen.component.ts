@@ -28,7 +28,6 @@ export class AuthenComponent implements OnInit {
       */
      //alert(localStorage.getItem("userFullName"))
     });
-
     this.router.navigate(['home/dashboard']);
   }
 

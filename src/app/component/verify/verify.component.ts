@@ -32,7 +32,7 @@ export class VerifyComponent implements OnInit {
     .subscribe((data)=>{
         if(data["status"]=="success"){
           jQuery(this.modalVerify.nativeElement).modal('hide'); 
-          this.router.navigate(['authen'],{ queryParams: { t : data['token'] , n : data['name'] } });
+          this.router.navigate([''],{ queryParams: { t : data['token'] , n : data['name'] } });
           
           //window.location.reload();
         }

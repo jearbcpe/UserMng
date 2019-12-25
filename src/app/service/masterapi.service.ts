@@ -6,7 +6,7 @@ import { HttpClient,HttpParams  } from '@angular/common/http';
 })
 export class MasterapiService {
   constructor(private httpClient: HttpClient) { }
-  public webApi = "http://10.222.4.234/msc_dev/index.php?r=ws/wsComj";
+  public webApi = "http://msc.moj.go.th/index.php?r=ws/wsComj";
   private token = localStorage.getItem("token");
   public getDivn(){
     var jsonData = { "token" : this.token,"func": "getListDivn" };

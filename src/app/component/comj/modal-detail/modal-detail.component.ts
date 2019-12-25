@@ -47,6 +47,7 @@ export class ModalDetailComponent implements OnInit {
     this.comj.setComjPosition = this.result[0]["comjPosition"];
     this.comj.setComjDivnName = this.result[0]["comjDivnName"];
     this.comj.setComjCenterName = this.result[0]["comjCenterName"];
+
     this.comj.setRegCardDT = this.masterService.convertDate(this.result[0]["regCardDT"]);
     this.comj.setRegCardBy = this.result[0]["regCardBy"];
     this.comj.setCardExp = this.result[0]["cardExp"];

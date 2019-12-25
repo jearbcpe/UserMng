@@ -1,6 +1,7 @@
 import { Component,ViewChild } from '@angular/core';
 import { VerifyComponent } from './component/verify/verify.component';
-import { Router, Event, NavigationStart, NavigationEnd, NavigationError } from '@angular/router';
+import { Router,ActivatedRoute, Event, NavigationStart, NavigationEnd, NavigationError } from '@angular/router';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,10 +12,17 @@ export class AppComponent {
   
 
   @ViewChild(VerifyComponent ,{static: false}) public modalVerify :VerifyComponent;
-  constructor(private router: Router) {
+  constructor(private route: ActivatedRoute,private router: Router) {
     this.router.events.subscribe((event: Event) => {
         if (event instanceof NavigationStart) {
-                
+          this.route.queryParams.subscribe(params => {
+            if(params['t'] != undefined && params['n'] != undefined )
+            {
+              localStorage.setItem("token", params['t']);
+              localStorage.setItem("userFullName", params['n']);
+              this.router.navigate(['home/dashboard']);
+            }
+          });
         }
         /*
         if (event instanceof NavigationEnd) {
