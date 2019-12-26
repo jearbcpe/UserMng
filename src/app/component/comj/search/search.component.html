@@ -87,7 +87,8 @@
                                 <nav aria-label="Page navigation example">
                                     <ul class="pagination float-right">
                                       <li class="page-item"><button class="page-link" (click)="decreasePageNumber()">Previous</button></li>
-                                      <li *ngFor="let nPage of arrNumPage" class="page-item" [ngClass]="{active: nPage==currentPage}">
+                                      <li *ngFor="let nPage of arrNumPage" class="page-item" [ngClass]="{active: nPage==currentPage}"
+                                      [ngStyle]="{'display' : nPage >= currentPage - 3 && nPage <= currentPage + 3 ? 'inline' :'none'}">
                                         <button  class="page-link" (click)="displayComjList(nPage)" >{{nPage}}</button>
                                       </li>
                                       <li class="page-item"><button class="page-link" (click)="increasePageNumber()">Next</button></li>
