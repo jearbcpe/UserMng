@@ -22,6 +22,7 @@ export class NewComjComponent implements OnInit {
   constructor(private comjService: ComjapiService,private masterService : MasterapiService) { }
   public mode : string;
   public comj = new COMJ();
+  public comjId : string;
   public comjIdForEdit : string;
   public selectNewComjDivnId : string = "0";
   public txtComjNo : string;
@@ -71,8 +72,8 @@ export class NewComjComponent implements OnInit {
   {
     this.comjService.retrieveComjDetail(comjId)
     .subscribe((data)=>{
-      this.result = data
-      this.displayInitialComjDetail()
+      this.result = data;
+      this.displayInitialComjDetail();
     });
   }
 
@@ -98,76 +99,50 @@ export class NewComjComponent implements OnInit {
 
   onSubmitNewComj(formObject:NgForm)
   {
-    alert(formObject.value["txtComjNo"]);
-  }
-  saveComj(mode:string){
+    this.comj = new COMJ();
+    this.comj.setComjNo = formObject.value["txtComjNo"];
+    this.comj.setComjFullName = formObject.value["txtComjFullName"];
+    this.comj.setComjDivnName = formObject.value["txtComjDivnName"];
+    this.comj.setComjDivnId = formObject.value["selectComjDivnId"];
+    this.comj.setComjCenterName = formObject.value["txtComjCenterName"];
+    this.comj.setComjPosition = formObject.value["txtComjPosition"];
+    this.comj.setRegCardBy = formObject.value["txtRegCardBy"];
+    this.comj.setRegCardDT = formObject.value["txtRegCardDT"];
+    this.comj.setCardExp = formObject.value["txtCardExp"];
+    this.comj.setStatus = formObject.value["selectComjStatus"];
+    this.comj.setComjUsername = formObject.value["txtComjUsername"];
+    this.comj.setComjPassword = formObject.value["txtComjPassword"];
+    if(this.mode == "edit")
+      this.comj.setComjId =  this.comjIdForEdit;
+
     if(this.mode == "new")
     {
-      //if(this.txtComjNo != "")
-        this.addNewComj();
-      //else
-       // alert("กรุณาระบุเลขประจำตัวคณะกรรมการฯ")
+      this.comjService.addNewComj(this.comj).subscribe((data)=> {
+        if(data["status"]=="success"){
+          alert("เพิ่มข้อมูลสำเร็จ");  
+          jQuery(this.modalComjDetail.nativeElement).modal('hide');  
+        }
+        else if(data["status"]=="fail")
+          alert("พบข้อผิดพลาด เพิ่มข้อมูลไม่สำเร็จ");  
+        else if(data["status"]=="expired")
+          alert("Session ของคุณหมดอายุ"); 
+      });
     }
-      
-    else if(this.mode == "edit")
-      this.editComj(this.comjIdForEdit);
-  }
-
-  editComj(comjId:string)
-  {
-    this.comj = new COMJ();
-    this.comj.setComjNo = this.txtComjNo;
-    this.comj.setComjFullName = this.txtComjFullName;
-    this.comj.setComjDivnName = this.txtComjDivnName;
-    this.comj.setComjDivnId = this.ddlDivn.selectComjDivnId;
-    this.comj.setComjCenterName = this.txtComjCenterName;
-    this.comj.setComjPosition = this.txtComjPosition;
-    this.comj.setRegCardBy = this.txtRegCardBy;
-    this.comj.setRegCardDT = this.txtRegCardDT;
-    this.comj.setCardExp = this.txtCardExp;
-    this.comj.setStatus = this.selectComjStatus
-    this.comj.setComjUsername = this.txtComjUsername;
-    this.comj.setComjPassword = this.txtComjPassword;
-    this.comj.setComjId = comjId;
-    this.comjService.editComj(this.comj).subscribe((data)=> {
-      if(data=="1")
-      {
-        alert("แก้ไขข้อมูลสำเร็จ");  
-        jQuery(this.modalComjDetail.nativeElement).modal('hide');  
-      }
-      else
-        alert("พบข้อผิดพลาด แก้ไขข้อมูลไม่สำเร็จ");  
-        
-    });
-  }
-
-  addNewComj(){
-    this.comj = new COMJ();
-    this.comj.setComjNo = this.txtComjNo;
-    this.comj.setComjFullName = this.txtComjFullName;
-    this.comj.setComjDivnName = this.txtComjDivnName;
-    this.comj.setComjDivnId = this.ddlDivn.selectComjDivnId;
-    this.comj.setComjCenterName = this.txtComjCenterName;
-    this.comj.setComjPosition = this.txtComjPosition;
-    this.comj.setRegCardBy = this.txtRegCardBy;
-    this.comj.setRegCardDT = this.txtRegCardDT;
-    this.comj.setCardExp = this.txtCardExp;
-    this.comj.setStatus = this.selectComjStatus
-    this.comj.setComjUsername = this.txtComjUsername;
-    this.comj.setComjPassword = this.txtComjPassword;
-
-    this.comjService.addNewComj(this.comj).subscribe((data)=> {
-      if(data=="1")
-      {
-        alert("เพิ่มข้อมูลสำเร็จ");  
-        jQuery(this.modalComjDetail.nativeElement).modal('hide');  
-      }
-      else
-        alert("พบข้อผิดพลาด เพิ่มข้อมูลไม่สำเร็จ");  
-       
-    });
+    else if(this.mode=="edit")
+    {
+      this.comjService.editComj(this.comj).subscribe((data)=> {   
+        if(data["status"]=="success"){
+          alert("แก้ไขข้อมูลสำเร็จ");  
+          jQuery(this.modalComjDetail.nativeElement).modal('hide');  
+        }
+        else if(data["status"]=="fail")
+          alert("พบข้อผิดพลาด แก้ไขข้อมูลไม่สำเร็จ");  
+        else if(data["status"]=="expired")
+          alert("Session ของคุณหมดอายุ"); 
+      });
+    }
+  
     
-
   }
 
 }

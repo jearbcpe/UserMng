@@ -132,7 +132,7 @@ export class SearchComponent implements OnInit {
     this.modalNewComj.showModal("new");
   }
   showModalEditComj(comjId : string){
-
+    this.modalNewComj.formComj.resetForm();
     this.modalNewComj.showModal("edit",comjId);
   }
   

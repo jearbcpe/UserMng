@@ -19,8 +19,7 @@ export class AppComponent {
             if(params['t'] != undefined && params['n'] != undefined )
             {
               localStorage.setItem("token", params['t']);
-              localStorage.setItem("userFullName", params['n']);
-              this.router.navigate(['home/dashboard']);
+              localStorage.setItem("userFullName", params['n']);        
             }
           });
         }

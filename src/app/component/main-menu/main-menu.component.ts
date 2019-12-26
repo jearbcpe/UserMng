@@ -42,7 +42,7 @@ export class MainMenuComponent implements OnInit {
         if(data["status"]=="success"){
           this.nameProfile = "";
           localStorage.removeItem('userFullName');
-          alert("ออกจากระบบสำเร็จ");
+          //alert("ออกจากระบบสำเร็จ");
           this.router.navigate(['home/dashboard']);
         }
       });    

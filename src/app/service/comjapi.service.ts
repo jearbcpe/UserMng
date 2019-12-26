@@ -28,6 +28,7 @@ export class ComjapiService {
   public retrieveComjDetail(comjId:string)
   {
     var jsonData = { "token" : localStorage.getItem("token"), "func": "retrieveComjDetail" , "comjId" : comjId}
+ 
     return this.exportData(jsonData);
   }
 
@@ -71,10 +72,9 @@ export class ComjapiService {
                       "volUsername":comj.getComjUsername,
                       "volPassword":comj.getComjPassword,
                       "divnId":comj.getComjDivnId,
-                      "status":comj.getStatus
+                      "status":comj.getStatus,
                     }
-    //let params = new HttpParams().set('id', '5');
-    return this.exportData(jsonData)
+    return this.exportData(jsonData);
   }
 
   public resetPassword(comjId:string)
